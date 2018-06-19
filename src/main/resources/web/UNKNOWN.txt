@@ -1,0 +1,6 @@
+--GSLIh9JP4xurTmVnji46y2tv
+Content-Type: text/plain
+Content-Disposition: form-data; filename="someTxt.txt"; name=""
+
+6. something else
+--GSLIh9JP4xurTmVnji46y2tv--

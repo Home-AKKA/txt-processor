@@ -1,0 +1,40 @@
+apply plugin: 'application'
+mainClassName = 'com.ajax_systems.akka.AppTxtProcessor'
+applicationName = 'TxtProcessor'
+version = '1.0'
+
+task buildJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version,
+                'Main-Class': mainClassName
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+run {
+    standardInput = System.in
+}
+
+repositories {
+    mavenCentral()
+}
+
+def scalaVersion = "2.12"
+
+dependencies {
+    compile "com.typesafe.akka:akka-http_$scalaVersion:10.0.9"
+    compile "com.typesafe.akka:akka-stream_$scalaVersion:2.5.4"
+    compile "com.lightbend.akka:akka-stream-alpakka-file_$scalaVersion:0.11"
+    compile "com.lightbend.akka:akka-stream-alpakka-csv_$scalaVersion:0.11"
+
+    compile 'ch.qos.logback:logback-classic:1.1.7'
+
+    compile 'com.google.inject:guice:4.0'
+    compile "com.typesafe.akka:akka-http-jackson_$scalaVersion:10.1.2"
+
+    compile 'commons-lang:commons-lang:2.3'
+    compile 'commons-cli:commons-cli:1.2'
+}
